@@ -4,12 +4,14 @@ intents:
 - greet
 - goodbye
 - stop
+- send_email
+- deny
 
 entities:
 - cuisine
 - location
 - pricerange
-
+- email
 slots:
   cuisine:
     type: text
@@ -17,6 +19,10 @@ slots:
     type: text
   pricerange:
     type: text
+  email:
+    type: text
+  isServicedCity:
+    type: bool
 
 
 templates:

@@ -7,6 +7,38 @@ from rasa_sdk.events import SlotSet
 import zomatopy
 import json
 
+
+class ActionValidateLocation(Action):
+	def name(self):
+		return 'action_validate_location'
+		
+	def run(self, dispatcher, tracker, domain):
+		print("checking location")
+		response = "location fine"
+		loc = tracker.get_slot('location')
+		print("loc is: " + loc)
+		if(loc == "churu"):
+			dispatcher.utter_message("No Service")
+			print("checking location no srvice")
+			return [SlotSet("isServicedCity", False)]	    
+		else :
+			dispatcher.utter_message("Serviced")
+			print("checking location ok")
+			return [SlotSet("isServicedCity", True)]
+			
+		dispatcher.utter_message("-----"+response)
+
+
+class ActionSendEmail(Action):
+	def name(self):
+		return 'action_send_email'
+		
+	def run(self, dispatcher, tracker, domain):
+		print("sent email")
+		response = "email id ok"
+		dispatcher.utter_message("-----"+response)
+
+
 class ActionSearchRestaurants(Action):
 	def name(self):
 		return 'action_search_restaurants'

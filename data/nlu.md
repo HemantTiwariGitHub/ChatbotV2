@@ -12,6 +12,16 @@
 - sounds really good
 - thanks
 - thanks
+- yupp
+
+## intent:deny
+- no
+- nope
+- not needed
+- leave it
+- nahi
+- nope not required
+- I dont need
 
 ## intent:goodbye
 - bye
@@ -88,7 +98,10 @@
 - I want a place to eat within [250](pricerange) rupees
 - Looking out for some good [south indian](cuisine) restaurants costing about [600](pricerange) per head
 
-
+## intent: send_email
+- send mail to [abc@xyz.com](email)
+- send to  [ssasjhad@xdasdsyz.net](email)
+- [abasdasc@xydasdsaz.com](email)
 
 ## synonym:Delhi
 - New Delhi
@@ -155,5 +168,4 @@
 
 ## regex:greet
 - hey[^\s]*
-
 
