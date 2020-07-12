@@ -1,43 +1,31 @@
-intents:
-- affirm
-- restaurant_search
-- greet
-- goodbye
-- stop
-- send_email
-- deny
-
+actions:
+- action_search_restaurants
+- action_send_email
+- action_validate_location
+- utter_ask_cuisine
+- utter_ask_emailid
+- utter_ask_howcanhelp
+- utter_ask_ifemailneeded
+- utter_ask_location
+- utter_ask_pricerange
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_no_operation
 entities:
 - cuisine
+- email
 - location
 - pricerange
-- email
-slots:
-  cuisine:
-    type: text
-  location:
-    type: text
-  pricerange:
-    type: text
-  email:
-    type: text
-  isServicedCity:
-    type: bool
-
-
-templates:
-  utter_greet:
-  - text: hey there! How may i help you
-  - text: Hi, How can I help you!
-  - text: Hey, How is it going. How May I help you Today
-
-  utter_ask_howcanhelp:
-  - text: how can I help you?
-
-  utter_ask_location:
-  - text: can you please tell me in which location ?
-  - text: please let me know the location.
-
+intents:
+- goodbye
+- greet
+- send_email
+- restaurant_search
+- affirm
+- stop
+- deny
+responses:
   utter_ask_cuisine:
   - buttons:
     - payload: Chinese
@@ -53,7 +41,15 @@ templates:
     - payload: North Indian
       title: North Indian
     text: what kind of cuisine would you like?
-
+  utter_ask_emailid:
+  - text: please let me know your email adderess
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_ifemailneeded:
+  - text: would you like details of top 10 restaurants in email ?
+  utter_ask_location:
+  - text: can you please tell me in which location ?
+  - text: please let me know the location.
   utter_ask_pricerange:
   - buttons:
     - payload: LesserThan300
@@ -63,35 +59,29 @@ templates:
     - payload: MoreThan700
       title: More than 700 ?
     text: what is the price range you are looking for ?
-  
-  utter_ask_ifemailneeded:
-  - text: would you like details of top 10 restaurants in email ?
-
-  utter_ask_emailid:
-  - text: please let me know your email adderess
-
   utter_default:
   - text: sorry I cannot understand
-
-  utter_no_operation:
-  - text: sorry We do not operate in that area yet
-  - text: umm..sorry no operations in that area.
-
   utter_goodbye:
   - text: goodbye
   - text: Bye-bye
-
-actions:
-- utter_greet
-- utter_ask_howcanhelp
-- utter_ask_location
-- utter_ask_cuisine
-- utter_ask_pricerange
-- utter_ask_ifemailneeded
-- utter_ask_emailid
-- utter_default
-- utter_no_operation
-- utter_goodbye
-- action_validate_location
-- action_search_restaurants
-- action_send_email
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_no_operation:
+  - text: sorry We do not operate in that area yet
+  - text: umm..sorry no operations in that area.
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 0
+slots:
+  cuisine:
+    type: text
+  email:
+    type: text
+  isServicedCity:
+    type: bool
+  location:
+    type: text
+  pricerange:
+    type: text

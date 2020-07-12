@@ -16,7 +16,7 @@ class ActionValidateLocation(Action):
 		print("checking location")
 		response = "location fine"
 		loc = tracker.get_slot('location')
-		print("loc is: " + loc)
+		print("loc is: " + str(loc))
 		if(loc == "churu"):
 			dispatcher.utter_message("No Service")
 			print("checking location no srvice")
