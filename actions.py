@@ -36,7 +36,9 @@ class ActionSendEmail(Action):
 	def run(self, dispatcher, tracker, domain):
 		emailId = tracker.get_slot('email')
 		print("emailid is: " + str(emailId))
-		dispatcher.utter_message("-----"+response)
+		send_email('upgradchatbottest12020@gmail.com', "TestMail", "TestSubject")
+		response ="mail sent"
+		dispatcher.utter_message(response)
 
 
 class ActionSearchRestaurants(Action):
@@ -76,3 +78,26 @@ T2List = ["agra","ajmer","aligarh","amravati","amritsar","asansol","aurangabad",
 		  "purulia","prayagraj","raipur","rajkot","rajahmundry","ranchi","rourkela","salem","sangli","shimla",
 		  "siliguri","solapur","srinagar","surat","thiruvananthapuram","thrissur","tiruchirappalli","tiruppur","ujjain",
 		  "bijapur","vadodara","varanasi","vasaivirarcity","vijayawada","visakhapatnam","vellore","warangal"]
+
+
+def send_email(toAddress, mailSubject, mailText):
+		import smtplib
+		from email.mime.multipart import MIMEMultipart
+		from email.mime.text import MIMEText
+
+		sender_address = 'upgradchatbottest2020@gmail.com'
+		sender_pass = 'upgrad2020'
+		receiver_address = toAddress
+		message = MIMEMultipart()
+		message['From'] = sender_address
+		message['To'] = receiver_address
+		message['Subject'] = mailSubject
+
+		message.attach(MIMEText(mailText, 'plain'))
+		session = smtplib.SMTP('smtp.gmail.com', 587) 
+		session.starttls()
+		session.login(sender_address, sender_pass) 
+		text = message.as_string()
+		session.sendmail(sender_address, receiver_address, text)
+		session.quit()
+		print('Mail Sent')
