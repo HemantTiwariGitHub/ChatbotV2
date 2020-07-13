@@ -97,22 +97,60 @@
 - send mail to [abc@xyz.com](email)
 - send to  [ssasjhad@xdasdsyz.net](email)
 - [abasdasc@xydasdsaz.com](email)
-- [JSAL@JWJD.COM](email)
+- [sample@domain.com](email)
+- [sample_somethingelse@domain.com](email)
+- ok my email address is [add.dshjhdjhdjw@xyewez.com](email)
 
-## synonym:4
-- four
-
-## synonym:Delhi
+## synonym:delhi
 - New Delhi
 - NCR
 - Dilli
 
-## synonym:american
-- america
+## synonym:mumbai
+- Bombay
+- Bambai
+- Mubai
+- Mumbaai
+
 
 ## synonym:bangalore
 - Bengaluru
 - Banglore
+- blr
+- blore
+
+## synonym:kolkata
+- Calcutta
+
+## synonym:chennai
+- Madras
+
+## synonym:pune
+- Poona
+
+## synonym:ahmedabad
+- Amdabad
+- Ahamadabad
+
+## synonym:hyderabad
+- Hyd
+- Haidarabad
+
+## synonym:bokarosteelcity
+- Bokaro
+
+## synonym:hublidharwad
+- Hubli
+- Dharwad
+
+## synonym:vasaivirarcity
+- Vasai
+- Virar
+- Virarcity
+
+## synonym:visakhapatnam
+- Vizag
+
 
 ## synonym:cheap
 - budget
@@ -120,11 +158,11 @@
 - economical
 - inexpensive
 
-## synonym:chinese
-- chines
-- Chinese
-- Chines
-- china food
+
+## synonym:midrange
+- VFM
+- value for money
+- not very costly
 
 ## synonym:highend
 - highclass
@@ -135,6 +173,16 @@
 - fancy
 - hiend
 
+
+## synonym:chinese
+- chines
+- Chinese
+- Chines
+- china food
+
+## synonym:american
+- america
+
 ## synonym:italian
 - italy
 
@@ -143,15 +191,6 @@
 
 ## synonym:mid
 - moderate
-
-## synonym:midrange
-- VFM
-- value for money
-- not very costly
-
-## synonym:mumbai
-- Bombay
-- Bambai
 
 ## synonym:mysore
 - mysuru
