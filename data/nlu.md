@@ -94,6 +94,11 @@
 - I want a place to eat within [250](pricerange) rupees
 - Looking out for some good [south indian](cuisine) restaurants costing about [600](pricerange) per head
 - Find me a [chinese](cuisine) restaurant in [lucknow](location)
+- [cheap](pricerange)
+- [midrange](pricerange)
+- [highend](pricerange)
+- [500](pricerange) Rs
+- Rs [1000](pricerange)
 
 ## intent:send_email
 - send mail to [abc@xyz.com](email)
@@ -208,7 +213,4 @@
 - south
 
 ## regex:greet
-- hey[^\s]*
-
-## regex:cheap
 - hey[^\s]*
