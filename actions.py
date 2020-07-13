@@ -6,6 +6,9 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 import zomatopy
 import json
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 class ActionValidateLocation(Action):
 	def name(self):
@@ -76,8 +79,11 @@ class ActionSearchRestaurants(Action):
 			response= "no results"
 			finalResponse = "no results"
 		else:
-			for restaurant in d['restaurants']:
-				resText ="Found "+ restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address']+"\n"
+			jsonArray = d['restaurants']
+			jsonArray.sort(key = lambda x:x['restaurant']['user_rating']['aggregate_rating'], reverse=True)
+			for restaurant in jsonArray:
+				avgCost = "Average Cost for Two is :: " + str(restaurant['restaurant']['average_cost_for_two'])
+				resText =  restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address'] +" has been rated " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" + avgCost + ".\n\n"
 				finalResponse = finalResponse + resText
 
 		dispatcher.utter_message("\n-----\n"+finalResponse+"\n-----\n")
@@ -108,10 +114,6 @@ def find_restaurants(loc, cuisine, range,count):
 		return results
 
 def send_email(toAddress, mailSubject, mailText):
-		import smtplib
-		from email.mime.multipart import MIMEMultipart
-		from email.mime.text import MIMEText
-
 		sender_address = 'upgradchatbottest2020@gmail.com'
 		sender_pass = 'upgrad2020'
 		receiver_address = toAddress
