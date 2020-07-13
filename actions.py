@@ -43,18 +43,12 @@ class ActionSendEmail(Action):
 		loc = str(tracker.get_slot('location')).lower()
 		cuisine = str(tracker.get_slot('cuisine')).lower()
 		range = str(tracker.get_slot('pricerange')).lower()
-		print ("ASR Location: " + loc  +"ASR cuisine: " + cuisine +"ASR range: " + range)
-		results = find_restaurants(loc, cuisine, range, 10)	
-		d = json.loads(results)
-		response=""
-		finalResponse =""
-		if d['results_found'] == 0:
-			response= "no results"
-			finalResponse = "no results"
-		else:
-			for restaurant in d['restaurants']:
-				resText ="Found "+ restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address']+"\n"
-				finalResponse = finalResponse + resText
+		print ("ASR Location: " + loc  +" , ASR cuisine: " + cuisine +" , ASR range: " + range)
+
+		results = find_restaurants(loc, cuisine, range, 50)	
+		ResList = json.loads(results)
+		NeededCount = 10
+		finalResponse = sortFilterTop(ResList, NeededCount, range)
 
 		send_email(emailId, "TestMail", "Your Top 10" + cuisine + "restaurants in " + loc +"\n\n"+finalResponse);
 		response ="mail sent"
@@ -70,21 +64,11 @@ class ActionSearchRestaurants(Action):
 		loc = str(tracker.get_slot('location')).lower()
 		cuisine = str(tracker.get_slot('cuisine')).lower()
 		range = str(tracker.get_slot('pricerange')).lower()
-		print ("ASR Location: " + loc  +"ASR cuisine: " + cuisine +"ASR range: " + range)
-		results = find_restaurants(loc, cuisine, range, 5)	
-		d = json.loads(results)
-		response=""
-		finalResponse =""
-		if d['results_found'] == 0:
-			response= "no results"
-			finalResponse = "no results"
-		else:
-			jsonArray = d['restaurants']
-			jsonArray.sort(key = lambda x:x['restaurant']['user_rating']['aggregate_rating'], reverse=True)
-			for restaurant in jsonArray:
-				avgCost = "Average Cost for Two is :: " + str(restaurant['restaurant']['average_cost_for_two'])
-				resText =  restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address'] +" has been rated " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" + avgCost + ".\n\n"
-				finalResponse = finalResponse + resText
+		print ("ASR Location: " + loc  +" , ASR cuisine: " + cuisine +", ASR range: " + range)
+		results = find_restaurants(loc, cuisine, range, 50)	
+		ResList = json.loads(results)
+		NeededCount = 5
+		finalResponse = sortFilterTop(ResList, NeededCount,range)
 
 		dispatcher.utter_message("\n-----\n"+finalResponse+"\n-----\n")
 		return [SlotSet('location',loc)]
@@ -130,3 +114,41 @@ def send_email(toAddress, mailSubject, mailText):
 		session.sendmail(sender_address, receiver_address, text)
 		session.quit()
 		print('Mail Sent')
+
+
+def sortFilterTop(ResList, NeededCount, range):
+		finalResponse =""
+		if ResList['results_found'] == 0:
+			finalResponse = "no results"
+		else:
+			jsonArray = ResList['restaurants']
+			jsonArray.sort(key = lambda x:x['restaurant']['user_rating']['aggregate_rating'], reverse=True)
+			idx = 0
+			for restaurant in jsonArray:
+				#avgCost = "Average Cost for Two is :: " + str(restaurant['restaurant']['average_cost_for_two'])
+				if (idx >= NeededCount):
+					break;
+				avgCost=restaurant['restaurant']['average_cost_for_two']
+				if (isValid(avgCost,range)):
+					resText =  restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address'] +" has been rated " + restaurant['restaurant']['user_rating']['aggregate_rating']  + " Average Cost for 2 is : " + str(avgCost)+ "\n"
+					finalResponse = finalResponse + resText
+					idx = idx +1 
+		return finalResponse
+
+def isValid(cost, range):
+	low = 0;
+	high = 0;
+	if (range == "cheap"):
+		low = 0
+		high = 300
+	elif (range == "midrange"):
+		low = 300
+		high = 700
+	elif (range == "highend"):
+		low = 700
+		high =100000
+
+	if ((cost >= low) and (cost < high)):
+		return True
+	else:
+		return False
