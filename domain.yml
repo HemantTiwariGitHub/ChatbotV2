@@ -52,11 +52,11 @@ responses:
   - text: please let me know the location.
   utter_ask_pricerange:
   - buttons:
-    - payload: LesserThan300
+    - payload: cheap
       title: Less than Rupees 300 ?
-    - payload: Between300To700
+    - payload: midrange
       title: Between Rupees 300 To 700 ?
-    - payload: MoreThan700
+    - payload: highend
       title: More than 700 ?
     text: what is the price range you are looking for ?
   utter_default:

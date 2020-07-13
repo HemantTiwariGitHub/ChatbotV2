@@ -23,6 +23,65 @@
     - utter_goodbye
 
 
+## User Greets Gives cusine but Location and Price one By One
+* greet
+    - utter_greet
+* restaurant_search{"cuisine": "north indian"}
+    - slot{"cuisine": "north indian"}
+    - utter_ask_location
+* restaurant_search{"location": "NCR"}
+    - slot{"location": "NCR"}
+    - action_validate_location
+    - slot{"isServicedCity" : true}
+    - utter_ask_pricerange
+* restaurant_search{"pricerange": "highend"}
+    - slot{"pricerange": "highend"}
+    - action_search_restaurants
+    - utter_ask_ifemailneeded
+* affirm
+    - utter_ask_emailid
+* send_email{"email": "abcas@xyzsa.net"}
+    - slot{"email": "abcas@xyzsa.net"}
+    - action_send_email
+    - utter_goodbye
+
+## User  Gives cusine but Location and Price one By One
+* restaurant_search{"cuisine": "north indian"}
+    - slot{"cuisine": "north indian"}
+    - utter_ask_location
+* restaurant_search{"location": "mumbai"}
+    - slot{"location": "mumbai"}
+    - action_validate_location
+    - slot{"isServicedCity" : true}
+    - utter_ask_pricerange
+* restaurant_search{"pricerange": "highend"}
+    - slot{"pricerange": "highend"}
+    - action_search_restaurants
+    - utter_ask_ifemailneeded
+* affirm
+    - utter_ask_emailid
+* send_email{"email": "abcas@xyzsa.net"}
+    - slot{"email": "abcas@xyzsa.net"}
+    - action_send_email
+    - utter_goodbye
+
+
+## User  Gives cusine but Location and Price one By One,denies email
+* restaurant_search{"cuisine": "north indian"}
+    - slot{"cuisine": "north indian"}
+    - utter_ask_location
+* restaurant_search{"location": "mumbai"}
+    - slot{"location": "mumbai"}
+    - action_validate_location
+    - slot{"isServicedCity" : true}
+    - utter_ask_pricerange
+* restaurant_search{"pricerange": "highend"}
+    - slot{"pricerange": "highend"}
+    - action_search_restaurants
+    - utter_ask_ifemailneeded
+* deny
+    - utter_goodbye
+
 ## User Greets Gives Location but Cusine and Price one By One
 * greet
     - utter_greet

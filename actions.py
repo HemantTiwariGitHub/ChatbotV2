@@ -14,19 +14,17 @@ class ActionValidateLocation(Action):
 		
 	def run(self, dispatcher, tracker, domain):
 		print("checking location")
-		response = "location fine"
-		loc = tracker.get_slot('location')
+		locholder = tracker.get_slot('location')
+		loc = str(locholder).lower()
+
 		print("loc is: " + str(loc))
 		if((loc not in T1List) and (loc not in T2List)):
-			dispatcher.utter_message("No Service")
 			print("checking location no srvice")
 			return [SlotSet("isServicedCity", False)]	    
 		else :
 			dispatcher.utter_message("Serviced")
 			print("checking location ok")
 			return [SlotSet("isServicedCity", True)]
-			
-		dispatcher.utter_message("-----"+response)
 
 
 class ActionSendEmail(Action):
@@ -35,8 +33,10 @@ class ActionSendEmail(Action):
 		
 	def run(self, dispatcher, tracker, domain):
 		emailId = tracker.get_slot('email')
+		loc = str(tracker.get_slot('location')).lower()
+		cuisine = str(tracker.get_slot('cuisine')).lower()
 		print("emailid is: " + str(emailId))
-		send_email('upgradchatbottest12020@gmail.com', "TestMail", "TestSubject")
+		send_email(emailId, "TestMail", "Your Top 10" + cuisine + "restaurants in " + loc );
 		response ="mail sent"
 		dispatcher.utter_message(response)
 
@@ -48,14 +48,17 @@ class ActionSearchRestaurants(Action):
 	def run(self, dispatcher, tracker, domain):
 		config={ "user_key":"4cd00db93a47050dde023c45cc5f98ef"}
 		zomato = zomatopy.initialize_app(config)
-		loc = tracker.get_slot('location')
-		cuisine = tracker.get_slot('cuisine')
+		loc = str(tracker.get_slot('location')).lower()
+		cuisine = str(tracker.get_slot('cuisine')).lower()
+		range = str(tracker.get_slot('pricerange')).lower()
+		dispatcher.utter_message("range is: " + range)
+
 		location_detail=zomato.get_location(loc, 1)
 		d1 = json.loads(location_detail)
 		lat=d1["location_suggestions"][0]["latitude"]
 		lon=d1["location_suggestions"][0]["longitude"]
 		cuisines_dict={'bakery':5,'chinese':25,'cafe':30,'italian':55,'biryani':7,'north indian':50,'south indian':85}
-		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 5)
+		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 10)
 		d = json.loads(results)
 		response=""
 		if d['results_found'] == 0:

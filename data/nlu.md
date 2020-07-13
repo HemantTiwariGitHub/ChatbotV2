@@ -73,6 +73,8 @@
 - please help me to find restaurants in [pune](location)
 - Please find me a restaurantin [bangalore](location)
 - [mumbai](location)
+- [Delhi](location)
+- [Bangalore](location)
 - show me restaurants
 - please find me [chinese](cuisine) restaurant in [delhi](location)
 - can you find me a [chinese](cuisine) restaurant
@@ -95,16 +97,20 @@
 
 ## intent:send_email
 - send mail to [abc@xyz.com](email)
-- send to  [ssasjhad@xdasdsyz.net](email)
+- send to [ssasjhad@xdasdsyz.net](email)
 - [abasdasc@xydasdsaz.com](email)
 - [sample@domain.com](email)
 - [sample_somethingelse@domain.com](email)
 - ok my email address is [add.dshjhdjhdjw@xyewez.com](email)
+- [hemant@gmail.com](email)
+- [hemant1.abc@gmail.com](email)
+- ok please send to [testmail@gmail.com](email)
 
 ## synonym:delhi
 - New Delhi
 - NCR
 - Dilli
+- Delhi
 
 ## synonym:mumbai
 - Bombay
@@ -202,4 +208,7 @@
 - south
 
 ## regex:greet
+- hey[^\s]*
+
+## regex:cheap
 - hey[^\s]*

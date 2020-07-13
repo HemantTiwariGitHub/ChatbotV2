@@ -1,51 +1,26 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/user-guide/testing-your-assistant/
 
-## happy path 1
-* greet: hello there!
+## Basic TestCase
+* greet: Hi
   - utter_greet
-* mood_great: amazing
-  - utter_happy
-
-## happy path 2
-* greet: hello there!
-  - utter_greet
-* mood_great: amazing
-  - utter_happy
-* goodbye: bye-bye!
+* restaurant_search: I want to find a restaurant
+  - utter_ask_location
+* restaurant_search: delhi
+  - slot{"location": "delhi"}
+  - action_validate_location
+  - slot{"isServicedCity":true}
+  - utter_ask_cuisine
+* restaurant_search : chinese
+  - slot{"cuisine": "chinese"}
+  - utter_ask_pricerange
+* restaurant_search : 900
+  - slot{"pricerange": "900"}
+  - action_search_restaurants
+  - utter_ask_ifemailneeded
+* affirm : yes
+  - utter_ask_emailid
+* send_email : "abc@xyz.com"
+  - slot{"email": "abc@xyz.com"}
+  - action_send_email
   - utter_goodbye
-
-## sad path 1
-* greet: hello
-  - utter_greet
-* mood_unhappy: not good
-  - utter_cheer_up
-  - utter_did_that_help
-* affirm: yes
-  - utter_happy
-
-## sad path 2
-* greet: hello
-  - utter_greet
-* mood_unhappy: not good
-  - utter_cheer_up
-  - utter_did_that_help
-* deny: not really
-  - utter_goodbye
-
-## sad path 3
-* greet: hi
-  - utter_greet
-* mood_unhappy: very terrible
-  - utter_cheer_up
-  - utter_did_that_help
-* deny: no
-  - utter_goodbye
-
-## say goodbye
-* goodbye: bye-bye!
-  - utter_goodbye
-
-## bot challenge
-* bot_challenge: are you a bot?
-  - utter_iamabot
