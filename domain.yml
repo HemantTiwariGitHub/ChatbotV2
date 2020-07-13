@@ -85,3 +85,5 @@ slots:
     type: text
   pricerange:
     type: text
+  topTen:
+    type: text

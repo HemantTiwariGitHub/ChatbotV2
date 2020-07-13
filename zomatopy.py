@@ -4,6 +4,7 @@ import ast
 base_url = "https://developers.zomato.com/api/v2.1/"
 
 
+
 def initialize_app(config):
     return Zomato(config)
 

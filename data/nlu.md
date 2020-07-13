@@ -110,7 +110,6 @@
 - New Delhi
 - NCR
 - Dilli
-- Delhi
 
 ## synonym:mumbai
 - Bombay
@@ -169,6 +168,8 @@
 - VFM
 - value for money
 - not very costly
+- moderate
+- mid
 
 ## synonym:highend
 - highclass
@@ -195,8 +196,7 @@
 ## synonym:mexican
 - mexico
 
-## synonym:mid
-- moderate
+
 
 ## synonym:mysore
 - mysuru
