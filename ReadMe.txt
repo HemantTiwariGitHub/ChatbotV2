@@ -11,4 +11,5 @@ In base folder :
 rasa train -vv -dump-stories --force
 
 How To Run:
-rasa shell
+"rasa shell"
+In another terminal "rasa run actions"
