@@ -35,6 +35,6 @@ Tandoori Taal in 3169-B, 12th Main, HAL 2nd Stage, Double Road, Indiranagar, Ban
 would you like details of top 10 restaurants in email ?
 Your input ->  yes
 please let me know your email adderess
-Your input ->  hemant.hbti@gmail.com
+Your input ->  h e m a n t @gmail.com
 mail sent
 Bye-bye
